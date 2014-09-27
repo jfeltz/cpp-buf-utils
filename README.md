@@ -1,9 +1,8 @@
 cpp-buf-utils
 ==============
 This Emacs library provides some basic methods for navigating and
-populating a c++ buffer with project dependencies. Emphasis is on
-configuring to the project at hand with just Elisp, rather than
-relying on **clang**, or some other c++ file inference engine.
+populating a c++ file buffer with project dependencies, e.g. ```#include``` and ```using namespace``` statements. Emphasis is on configuring to the project at hand with just Elisp, rather than
+relying on **clang**, or some other c++ project/file inference engine.
 
 ## Setup for Buffer Population
 The list, ```cpp-dependencies``` should be set on a per project basis,
@@ -13,7 +12,7 @@ for creating it. As an example:
 (setq cpp-dependencies
   (cpp-deps
    (dep "iostream" (include-bkt "iostream"))
-   (dep "vector" (include-bkt "vector")
+   (dep "vector" (include-bkt "vector"))
    (dep "boost ns" nil (namespace "boost"))
    (dep
 	 "boost program options"
@@ -24,7 +23,7 @@ for creating it. As an example:
 	 "boost spirit"
 	 (include-path "boost/spirit/include/qi.hpp")
 	 (namespaces
-	   (namespace-alias "boost::spirit::qi" "qi"))))))
+	   (namespace-alias "boost::spirit::qi" "qi")))))
 ```
 
 *Legend*
