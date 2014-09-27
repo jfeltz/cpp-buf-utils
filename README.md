@@ -64,7 +64,7 @@ To jump to the last ```#include <..>``` definition. And:
 ```elisp
 M-x c-include-unvisit
 ```
-
+to return to the last cursor position.
 
 # Installation
 ```lisp

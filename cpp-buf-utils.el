@@ -122,7 +122,7 @@
 (defun insert-namespaces (nl)
   "starting at current line pos, insert the namespace defined" 
   ; pre-condition:
-  ;   cursor is at next line after include list 
+  ;   cursor is at next line after namespace list 
   (unless (not nl)  
     (move-beginning-of-line nil)
     (insert "\n") (forward-line -1) ; shove rest down one line 
@@ -168,6 +168,7 @@ block cannot be found to be updated, print failure"
   (mapcar 'car cpp-dependencies))
 
 (defun cpp-dep-add ()
+  "launch the ido selection of dependencies to add to the buffer"
   (interactive)
   (save-excursion 
     (from-selection
@@ -176,6 +177,7 @@ block cannot be found to be updated, print failure"
      (to-ido-indexes cpp-dependencies)))))
 
 (defun std-cpp-deps () 
+ "a dep list for common STL includes"
  (let 
    ((includes 
       '("iostream"
@@ -190,6 +192,7 @@ block cannot be found to be updated, print failure"
 (defun from-kw (kw) (dep kw (include-bkt kw) ()))
 
 (defun default-cpp-dependencies ()
+  "a dep list for common C++ cases, and can be bound to the cpp-dependencies var"
   (append (std-cpp-deps)
     (cpp-deps
      (dep "boost ns" nil (namespace "boost"))
