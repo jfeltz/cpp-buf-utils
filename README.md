@@ -30,7 +30,7 @@ for creating it. As an example:
   * ```dep "iostream"```, and ```dep "vector"``` define expansions for ```#include <iostream>``` and ```#include <vector>```
   respectfully
   * ```boost ns``` define a namespace expansion for a ```using namespace boost;``` expression.
-  * ```boost program options``` and ```boost spirit``` define both an #include, and namespace alias for *boost::program_options*
+  * ```boost program options``` and ```boost spirit``` define a file includes, and a namespace alias for *boost::program_options* and *boost::spirit::qi* respectively.
 
 As a side note, cpp-buf-deps also provides a list of common dependencies by default, see ```(std-cpp-deps)``` and ```(default-cpp-dependencies)```.
 
@@ -45,7 +45,8 @@ add c++ dep: { iostream | vector | boost ns | boost program options | boost spir
 ```
 
 ido selecting ```iostream``` in this case results in ```#include <iostream>``` being included in
-the header section of the file.
+the header section of the file. And similarly, selection of ```boost program options``` would insert
+both the include and namespace definition for that option.
 
 **A Note on how cpp-buf-utils searchers for addition points**
 
