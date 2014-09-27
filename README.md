@@ -28,7 +28,7 @@ for creating it. As an example:
 ```
 
 *Legend*
-  * ```iostream```, and ```vector``` dep's define expansions for the STL *#include <iostream>* and *<vector>*
+  * ```dep "iostream"```, and ```dep "vector"``` define expansions for #include <iostream> and #include <vector>
   respectfully
   * ```boost ns``` define a namespace expansion for a ```using namespace boost;``` expression.
   * ```boost program options``` and ```boost spirit``` define both an #include, and namespace alias for *boost::program_options*
