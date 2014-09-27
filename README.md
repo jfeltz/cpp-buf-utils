@@ -35,7 +35,7 @@ for creating it. As an example:
 As a side note, cpp-buf-deps also provides a list of common dependencies by default, see ```(std-cpp-deps)``` and ```(default-cpp-dependencies)```.
 
 # Buffer Operation 
-Then one can add members from this to the section by ido selection with:
+Then one can add members from this to the applicable section (i.e. #include section) by ido choice, with:
 ```
 M-x cpp-dep-add 
 ```
