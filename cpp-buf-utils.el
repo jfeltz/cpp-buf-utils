@@ -181,7 +181,9 @@ block cannot be found to be updated, print failure"
  (let 
    ((includes 
       '("iostream"
+        "functional"
         "sstream"
+        "memory"
         "vector"
         "list"
         "algorithm"
@@ -198,12 +200,12 @@ block cannot be found to be updated, print failure"
      (dep "boost ns" nil (namespace "boost"))
      (dep
        "boost program options"
-       (include-path "boost/program_options.hpp")
+       (include-bkt "boost/program_options.hpp")
        (namespaces
          (namespace-alias "boost::program_options" "po")))
      (dep
        "boost spirit"
-       (include-path "boost/spirit/include/qi.hpp")
+       (include-bkt "boost/spirit/include/qi.hpp")
        (namespaces
          (namespace-alias "boost::spirit::qi" "qi"))))))
 
