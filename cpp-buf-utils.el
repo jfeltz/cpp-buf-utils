@@ -176,37 +176,120 @@ block cannot be found to be updated, print failure"
      "add c++ dep: "
      (to-ido-indexes cpp-dependencies)))))
 
-(defun std-cpp-deps () 
- "a dep list for common STL includes"
- (let 
-   ((includes 
-      '("iostream"
-        "functional"
-        "sstream"
-        "memory"
-        "vector"
-        "list"
-        "algorithm"
-        "set"
-        "map")))
-   (mapcar 'from-kw includes)))
-
 (defun from-kw (kw) (dep kw (include-bkt kw) ()))
 
 (defun default-cpp-dependencies ()
   "a dep list for common C++ cases, and can be bound to the cpp-dependencies var"
-  (append (std-cpp-deps)
-    (cpp-deps
-     (dep "boost ns" nil (namespace "boost"))
-     (dep
-       "boost program options"
-       (include-bkt "boost/program_options.hpp")
-       (namespaces
-         (namespace-alias "boost::program_options" "po")))
-     (dep
-       "boost spirit"
-       (include-bkt "boost/spirit/include/qi.hpp")
-       (namespaces
-         (namespace-alias "boost::spirit::qi" "qi"))))))
+  (append (std-cpp11-deps) (boost-deps))) 
+
+(defun boost-deps () 
+  (cpp-deps
+   (dep "boost ns" nil (namespace "boost"))
+   (dep
+     "boost program options"
+     (include-bkt "boost/program_options.hpp")
+     (namespaces
+       (namespace-alias "boost::program_options" "po")))
+   (dep
+     "boost spirit"
+     (include-bkt "boost/spirit/include/qi.hpp")
+     (namespaces
+      (namespace-alias "boost::spirit::qi" "qi")))
+   (dep
+     "boost assert"
+     (include-bkt "boost/assert.hpp")
+     (namespaces nil))
+   (dep
+     "boost optional"
+     (include-bkt "boost/optional.hpp")
+     (namespaces nil))
+   (dep
+     "boost asio"
+     (include-bkt "boost/asio.hpp")
+     (namespaces (namespace "boost::asio::ip::tcp")))))
+
+(defun std-cpp11-deps () 
+ "a dep list for STL11 includes"
+ (let 
+     ((includes 
+     '("algorithm"
+        "array"
+        "atomic"
+        "bitset"
+        "cassert"
+        "ccomplex"
+        "cctype"
+        "cerrno"
+        "cfenv"
+        "cfloat"
+        "chrono"
+        "cinttypes"
+        "climits"
+        "clocale"
+        "cmath"
+        "complex"
+        "condition_variable"
+        "csetjmp"
+        "csignal"
+        "scoped_allocator"
+        "set"
+        "shared_mutex"
+        "sstream"
+        "stack"
+        "stdexcept"
+        "streambuf"
+        "string"
+        "system_error"
+        "thread"
+        "tuple"
+        "typeindex"
+        "typeinfo"
+        "type_traits"
+        "unordered_map"
+        "unordered_set"
+        "utility"
+        "valarray"
+        "vector"
+        "cstdalign"
+        "cstdarg"
+        "cstdbool"
+        "cstddef"
+        "cstdint"
+        "cstdio"
+        "cstdlib"
+        "cstring"
+        "ctgmath"
+        "ctime"
+        "cwchar"
+        "cwctype"
+        "debug"
+        "deque"
+        "exception"
+        "experimental"
+        "forward_list"
+        "fstream"
+        "functional"
+        "future"
+        "initializer_list"
+        "iomanip"
+        "ios"
+        "iosfwd"
+        "iostream"
+        "istream"
+        "iterator"
+        "limits"
+        "list"
+        "locale"
+        "map"
+        "memory"
+        "mutex"
+        "new"
+        "numeric"
+        "ostream"
+        "queue"
+        "random"
+        "ratio"
+        "regex")))
+   (mapcar 'from-kw includes)))
 
 (provide 'cpp-buf-utils)
